@@ -7,8 +7,8 @@ require 'colorize'
 
 # bonus task
 class Task4
-  include Input_user
-  include File_handle
+  include InputUser
+  include FileHandle
   def max_temp_all(arr)
     temp = []
     arr.each do |h|

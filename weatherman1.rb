@@ -5,8 +5,8 @@ require './input_functions'
 require 'Date'
 # Task 1
 class Task1
-  include Input_user
-  include File_handle
+  include InputUser
+  include FileHandle
   def max_temp(inr)
     temp = []
     inr.each do |h|

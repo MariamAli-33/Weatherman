@@ -6,8 +6,8 @@ require 'Date'
 
 # Task 2
 class Task2
-  include Input_user
-  include File_handle
+  include InputUser
+  include FileHandle
   def avg_max_temp(inr)
     temp = []
     inr.each do |h|
