@@ -1,29 +1,31 @@
 # frozen_string_literal: true
 
-module Input_user
+# To handle all inputs
+module InputUser
   def user_input
     loop do
-      puts "Enter year/month you want to retrieve data for:"
+      puts 'Enter year/month you want to retrieve data for:'
       input = gets.chomp
       if input.empty?
-        puts "No input."
-      elsif input.include?(":")
-        puts "Illegal character ':'"
+        puts 'No input.'
+      elsif input.include?(':')
+        puts 'Illegal character ":" '
       else
         return input
       end
     end
   end
+
   def user_input_combine
     loop do
-      puts "Enter year you want to draw chart for:"
+      puts 'Enter year you want to draw chart for:'
       year = gets.chomp
-      puts "Enter month you want to draw chart for:"
+      puts 'Enter month you want to draw chart for:'
       month = gets.chomp
       if year.empty? || month.empty?
-        puts "No input."
-      elsif year.include?(":") || month.include?(":")
-        puts "Illegal character ':'"
+        puts 'No input.'
+      elsif year.include?(':') || month.include?(':')
+        puts 'Illegal character ":" '
       else
         return year, month
       end

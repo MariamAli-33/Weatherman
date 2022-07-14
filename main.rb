@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
-require "./file_dealing"
-require "./input_functions"
+require './file_dealing'
+require './input_functions'
 require 'Date'
-require "colorize"
-require "./weatherman1"
-require "./weatherman2"
-require "./weatherman3"
-require "./weatherman4"
+require 'colorize'
+require './weatherman1'
+require './weatherman2'
+require './weatherman3'
+require './weatherman4'
 
+# Main function to call all modules
 class Main
   obj1 = Task1.new
   x = obj1.user_input
@@ -43,6 +44,5 @@ class Main
   maxt2 = obj4.max_temp_all(y3)
   mint2 = obj4.min_temp_all(y3)
   obj4.bar_draw_one(mint2, maxt2)
-  puts "End of Project"
-
+  puts 'End of Project'
 end
