@@ -7,51 +7,51 @@ require 'Date'
 class Task1
   include InputUser
   include FileHandle
-  def max_temp(inr)
-    temp = []
-    inr.each do |h|
-      temp << h['Max Temp'].to_i
+  def max_temperature(array)
+    temperature = []
+    array.each do |h|
+      temperature << h['Max Temp'].to_i
     end
-    temp.max
+    temperature.max
   end
 
-  def date_ret_max(arr, var)
+  def date_retrieval_max_temp(array, var)
     day = []
-    arr.each do |h1|
+    array.each do |h1|
       day << h1['Date'] if h1['Max Temp'].to_i == var
     end
     day[rand(day.length)]
   end
 
-  def date_ret_min(arr, var)
+  def date_retrieval_min_temp(array, var)
     day = []
-    arr.each do |h1|
+    array.each do |h1|
       day << h1['Date'] if h1['Min Temp'].to_i == var
     end
     day[rand(day.length)]
   end
 
-  def date_ret_hum(arr, var)
+  def date_retrieval_humidity(array, var)
     day = []
-    arr.each do |h1|
+    array.each do |h1|
       day << h1['Date'] if h1['Max Humid'].to_i == var
     end
     day[rand(day.length)]
   end
 
-  def min_temp(inr)
-    temp = []
-    inr.each do |h|
-      temp << h['Min Temp'].to_i
+  def min_temperature(array)
+    temperature = []
+    array.each do |h|
+      temperature << h['Min Temp'].to_i
     end
-    temp.min
+    temperature.min
   end
 
-  def max_hum(inr)
-    temp = []
-    inr.each do |h|
-      temp << h['Max Humid'].to_i
+  def max_humidity(array)
+    temperature = []
+    array.each do |h|
+      temperature << h['Max Humid'].to_i
     end
-    temp.max
+    temperature.max
   end
 end

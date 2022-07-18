@@ -8,41 +8,66 @@ require './weatherman1'
 require './weatherman2'
 require './weatherman3'
 require './weatherman4'
-
 # Main function to call all modules
 class Main
-  obj1 = Task1.new
-  x = obj1.user_input
-  y = obj1.file_handling_year(x)
-  maxt = obj1.max_temp(y)
-  maxtd = obj1.date_ret_max(y, maxt)
-  puts "Maximum temperature for the year #{x} is #{maxt}C on day #{maxtd}"
-  mint = obj1.min_temp(y)
-  mintd = obj1.date_ret_min(y, mint)
-  puts "Minimum temperature for the year #{x} is #{mint}C on day #{mintd}"
-  maxh = obj1.max_hum(y)
-  maxhd = obj1.date_ret_hum(y, maxh)
-  puts "Maximum Humdidity for the year #{x} is #{maxh}% on day #{maxhd}"
-  obj2 = Task2.new
-  x1 = obj2.user_input
-  y1 = obj2.file_handling_month(x1)
-  amaxt = obj2.avg_max_temp(y1)
-  puts "Average Maximum temperature is #{amaxt}"
-  amint = obj2.avg_min_temp(y1)
-  puts "Average Minimum temperature is #{amint}"
-  amaxh = obj2.avg_max_hum(y1)
-  puts "Average Maximum Humdidity is #{amaxh}"
-  obj3 = Task3.new
-  x2, t = obj3.user_input_combine
-  y2 = obj3.file_handling_com(x2, t)
-  maxt1 = obj3.max_temp_all(y2)
-  mint1 = obj3.min_temp_all(y2)
-  obj3.bar_draw(maxt1, mint1)
-  obj4 = Task4.new
-  x3, t1 = obj4.user_input_combine
-  y3 = obj4.file_handling_com(x3, t1)
-  maxt2 = obj4.max_temp_all(y3)
-  mint2 = obj4.min_temp_all(y3)
-  obj4.bar_draw_one(mint2, maxt2)
-  puts 'End of Project'
+  def initial_data_task_yearly(object, input)
+    object.file_handling_year(input)
+  end
+
+  def initial_data_task_monthly(object, input)
+    object.file_handling_month(input)
+  end
+
+  def initial_data_task_combine(object, year, month)
+    object.file_handling_combine(year, month)
+  end
+
+  def task_one_call(object, input, file_data)
+    max_temperature = object.max_temperature(file_data)
+    max_temperature_day = object.date_retrieval_max_temp(file_data, max_temperature)
+    puts "Maximum temperature for the year #{input} is #{max_temperature}C on day #{max_temperature_day}"
+    min_temperature = object.min_temperature(file_data)
+    min_temperature_day = object.date_retrieval_min_temp(file_data, min_temperature)
+    puts "Minimum temperature for the year #{input} is #{min_temperature}C on day #{min_temperature_day}"
+    max_humidity = object.max_humidity(file_data)
+    max_humidity_day = object.date_retrieval_humidity(file_data, max_humidity)
+    puts "Maximum Humdidity for the year #{input} is #{max_humidity}% on day #{max_humidity_day}"
+  end
+
+  def task_two_call(object, file_data)
+    avg_max_temperature = object.avg_max_temperature(file_data)
+    puts "Average Maximum temperature is #{avg_max_temperature}"
+    avg_min_temperature = object.avg_min_temperature(file_data)
+    puts "Average Minimum temperature is #{avg_min_temperature}"
+    avg_max_humidity = object.avg_max_humidity(file_data)
+    puts "Average Maximum Humdidity is #{avg_max_humidity}"
+  end
+
+  def task_three_call(object, file_data)
+    max_temperature = object.max_temperature_all(file_data)
+    min_temperature = object.min_temperature_all(file_data)
+    object.bar_draw(max_temperature, min_temperature)
+  end
+
+  def task_four_call(object, file_data)
+    max_temperature = object.max_temperature_all(file_data)
+    min_temperature = object.min_temperature_all(file_data)
+    object.bar_draw_one(min_temperature, max_temperature)
+  end
 end
+
+# calling
+object1 = Task1.new
+object2 = Task2.new
+object3 = Task3.new
+object4 = Task4.new
+object5 = Main.new
+input_year = object1.user_input
+object5.task_one_call(object1, input_year, object5.initial_data_task_yearly(object1, input_year))
+input_month = object2.user_input
+object5.task_two_call(object2, object5.initial_data_task_monthly(object2, input_month))
+input_bar_year, input_bar_month = object3.user_input_combine
+object5.task_three_call(object3, object5.initial_data_task_combine(object3, input_bar_year, input_bar_month))
+input_bar_iyear, input_bar_imonth = object4.user_input_combine
+object5.task_four_call(object4, object5.initial_data_task_combine(object4, input_bar_iyear, input_bar_imonth))
+puts 'End of Project'

@@ -7,7 +7,7 @@ module FileHandle
   def file_handling_year(year)
     result = []
     data = []
-    cont = []
+    content = []
     files = Dir['Weather_data/*.txt']
     files.each do |filename|
       next unless File.read(filename).include?(year)
@@ -20,21 +20,21 @@ module FileHandle
         data << i.split(',')
       end
       data.each do |i|
-        req = {}
-        req['Date'] = i[0]
-        req['Max Temp'] = i[1]
-        req['Min Temp'] = i[3]
-        req['Max Humid'] = i[7]
-        cont << req
+        data_hash = {}
+        data_hash['Date'] = i[0]
+        data_hash['Max Temp'] = i[1]
+        data_hash['Min Temp'] = i[3]
+        data_hash['Max Humid'] = i[7]
+        content << data_hash
       end
     end
-    cont
+    content
   end
 
   def file_handling_month(month)
     result = []
     data = []
-    cont = []
+    content = []
     files = Dir['Weather_data/*.txt']
     files.each do |filename|
       next unless filename.match(/#{Date::ABBR_MONTHNAMES[month.to_i]}/)
@@ -47,20 +47,20 @@ module FileHandle
         data << i.split(',')
       end
       data.each do |i|
-        req = {}
-        req['Max Temp'] = i[1]
-        req['Min Temp'] = i[3]
-        req['Max Humid'] = i[7]
-        cont << req
+        data_hash = {}
+        data_hash['Max Temp'] = i[1]
+        data_hash['Min Temp'] = i[3]
+        data_hash['Max Humid'] = i[7]
+        content << data_hash
       end
     end
-    cont
+    content
   end
 
-  def file_handling_com(year, month)
+  def file_handling_combine(year, month)
     result = []
     data = []
-    cont = []
+    content = []
     puts year
     puts month
     files = Dir['Weather_data/*.txt']
@@ -75,13 +75,13 @@ module FileHandle
         data << i.split(',')
       end
       data.each do |i|
-        req = {}
-        req['Date'] = i[0]
-        req['Max Temp'] = i[1]
-        req['Min Temp'] = i[3]
-        cont << req
+        data_hash = {}
+        data_hash['Date'] = i[0]
+        data_hash['Max Temp'] = i[1]
+        data_hash['Min Temp'] = i[3]
+        content << data_hash
       end
     end
-    cont
+    content
   end
 end
